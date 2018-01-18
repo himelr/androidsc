@@ -12,33 +12,25 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        NumberPicker numberPicker = findViewById(R.id.numberPicker);
-        NumberPicker numberPicker2 = findViewById(R.id.numberPicker2);
-        final TextView textView = findViewById(R.id.textView4);
-        final Person person = new Person(170, 70);
 
-        textView.setText("Value:\n" + person.calculateBmi());
-        numberPicker.setMinValue(30);
-        numberPicker.setMaxValue(130);
-        numberPicker2.setMinValue(50);
-        numberPicker2.setMaxValue(210);
-        numberPicker.setValue(70);
-        numberPicker2.setValue(170);
+        final InitializeCalculator initCalc;
+        initCalc = new InitializeCalculator((TextView) findViewById(R.id.textView4),(NumberPicker)findViewById(R.id.numberPicker), (NumberPicker) findViewById(R.id.numberPicker2));
 
 
-        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+
+        initCalc.getNumberPicker().setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                person.setWeight(newVal);
-                textView.setText("Value:\n" + person.calculateBmi());
+                initCalc.calculate(newVal,true);
+
             }
         });
 
-        numberPicker2.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        initCalc.getNumberPicker2().setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                person.setHeight(newVal);
-                textView.setText("Value:\n" + person.calculateBmi());
+                initCalc.calculate(newVal,false);
+
             }
         });
     }
