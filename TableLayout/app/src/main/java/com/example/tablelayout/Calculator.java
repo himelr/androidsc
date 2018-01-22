@@ -132,8 +132,6 @@ class Calculator  {
                 operate(op.charAt(0));
                 this.textView2.setText(value + "");
 
-
-
             }
             catch (NumberFormatException e){
                 this.textView2.setText("Empty string");
@@ -153,7 +151,6 @@ class Calculator  {
         while(!q.isEmpty()){
             qnumbs+=q.remove();
         }
-
         switch (c){
 
             case '+':
