@@ -36,8 +36,6 @@ class CustomAdapter implements ListAdapter {
         this.observerChangeSet.add(new ObserverChange("Observer1"));
         this.observerChangeSet.add(new ObserverChange("Observer2"));
 
-
-
     }
 
     @Override
@@ -105,15 +103,10 @@ class CustomAdapter implements ListAdapter {
         }
         TextView tvName =  convertView.findViewById(R.id.textName);
         ImageView iv = convertView.findViewById(R.id.iv);
-        final String imgURL  = "https://www.google.com/images/srpr/logo11w.png";
-
         President p = presidents.get(position);
         tvName.setText(p.getName());
+        String imgURL  = p.getImg();
         new DownLoadImageTask(iv).execute(imgURL);
-
-
-
-
 
         return convertView;    }
 
@@ -124,19 +117,12 @@ class CustomAdapter implements ListAdapter {
             this.imageView = imageView;
         }
 
-        /*
-            doInBackground(Params... params)
-                Override this method to perform a computation on a background thread.
-         */
         protected Bitmap doInBackground(String...urls){
             String urlOfImage = urls[0];
             Bitmap logo = null;
             try{
                 InputStream is = new URL(urlOfImage).openStream();
-                /*
-                    decodeStream(InputStream is)
-                        Decode an input stream into a bitmap.
-                 */
+
                 logo = BitmapFactory.decodeStream(is);
             }catch(Exception e){ // Catch the download exception
                 e.printStackTrace();
@@ -144,10 +130,6 @@ class CustomAdapter implements ListAdapter {
             return logo;
         }
 
-        /*
-            onPostExecute(Result result)
-                Runs on the UI thread after doInBackground(Params...).
-         */
         protected void onPostExecute(Bitmap result){
             imageView.setImageBitmap(result);
         }

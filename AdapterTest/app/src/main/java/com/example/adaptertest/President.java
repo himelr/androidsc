@@ -34,7 +34,6 @@ class President {
         return endYear;
     }
 
-
     @Override
     public String toString() {
         return name + " " + startYear + "-" + endYear;

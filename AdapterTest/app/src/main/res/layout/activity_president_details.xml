@@ -18,16 +18,28 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv2"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="179dp"
-        android:layout_height="165dp"
-        android:layout_marginTop="300dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/iv2" />
 
 </android.support.constraint.ConstraintLayout>
