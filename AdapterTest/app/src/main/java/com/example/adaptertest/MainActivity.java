@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static void addPresidents(){
-        
+
         if(PresidentsGlobal.getInstance().getPresidents().isEmpty()){
             PresidentsGlobal.getInstance().addPresident(new President("Ståhlberg, Kaarlo Juho",1919,1925,"http://www.presidentti.fi/public/download.aspx?ID=44362&GUID={0FC2CA27-5FB2-4F3E-BB29-D9B9CE8EFCA5}&maxwidth=565&maxheight=500"));
             PresidentsGlobal.getInstance().addPresident(new President("Relander, Lauri Kristian",1925,1931,"http://www.presidentti.fi/public/download.aspx?ID=44363&GUID={4C489246-AE16-4068-A52F-C1F9A1B9D2D5}&maxwidth=565&maxheight=500"));
