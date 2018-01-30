@@ -25,29 +25,8 @@ public class PresidentDetails extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView);
         textView.setText(message + "");
 
+
+
     }
-    private class DownLoadImageTask extends AsyncTask<String,Void,Bitmap> {
-        ImageView imageView;
 
-        public DownLoadImageTask(ImageView imageView){
-            this.imageView = imageView;
-        }
-
-        protected Bitmap doInBackground(String...urls){
-            String urlOfImage = urls[0];
-            Bitmap logo = null;
-            try{
-                InputStream is = new URL(urlOfImage).openStream();
-
-                logo = BitmapFactory.decodeStream(is);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            return logo;
-        }
-
-        protected void onPostExecute(Bitmap result){
-            imageView.setImageBitmap(result);
-        }
-    }
 }

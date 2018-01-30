@@ -59,7 +59,7 @@ class MyProvider extends ContentProvider {
     }
 
     public Cursor query(Uri uri, String[] projection, String selection,
-                        String[] selectionArgs, String sortOrder) {
+                          String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder sqlBuilder = new SQLiteQueryBuilder();
         sqlBuilder.setTables(PresidentsHelper.TABLE_NAME);
         if (uriMatcher.match(uri) == PRESIDENT_ID)

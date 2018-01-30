@@ -2,7 +2,9 @@ package com.example.cursorloader;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
@@ -11,14 +13,27 @@ import android.net.Uri;
  */
 
 public class PresidentContentProvider extends ContentProvider {
+    SQLiteDatabase thisDB;
     private static final String AUTHORITY = "com.android.presidents";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
             + "/" + PresidentsHelper.TABLE_NAME);
     private PresidentsHelper dbHelper;
+    private static final UriMatcher uriMatcher;
+    private static final int PRESIDENT_ID = 2;
+    public static final String _ID = "_id";
+
+
+    static {
+        uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        uriMatcher.addURI(AUTHORITY, "PRESIDENTS/#", PRESIDENT_ID);
+    }
+
+
 
     @Override
     public boolean onCreate() {
         dbHelper = new PresidentsHelper(getContext());
+        thisDB = dbHelper.getReadableDatabase();
         return true;
     }
 
@@ -28,9 +43,12 @@ public class PresidentContentProvider extends ContentProvider {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(PresidentsHelper.TABLE_NAME);
         String orderBy = PresidentsHelper.COL_LANG_NAME + " asc";
+        if (uriMatcher.match(uri) == PRESIDENT_ID)
+           qb.appendWhere(_ID + " = " + uri.getPathSegments().get(1));
+
         Cursor cursor = qb.query(dbHelper.getReadableDatabase(),
                 new String[] { PresidentsHelper.COL_LANG_ID,
-                        PresidentsHelper.COL_LANG_NAME }, null,
+                        PresidentsHelper.COL_LANG_NAME, PresidentsHelper.COL_LANG_YEARS }, null,
                 null, null, null, orderBy);
 
         return cursor;
@@ -55,5 +73,22 @@ public class PresidentContentProvider extends ContentProvider {
                       String[] selectionArgs) {
         return 0;
     }
+
+
+
+    public Cursor query2(long id) {
+
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables(PresidentsHelper.TABLE_NAME);
+        qb.appendWhere(PresidentsHelper.COL_LANG_ID + " = " + id);
+
+        Cursor cursor = qb.query(thisDB,
+                new String[] { PresidentsHelper.COL_LANG_ID,
+                        PresidentsHelper.COL_LANG_NAME, PresidentsHelper.COL_LANG_YEARS }, null,
+                null, null, null, null);
+
+        return cursor;
+}
+
 
 }

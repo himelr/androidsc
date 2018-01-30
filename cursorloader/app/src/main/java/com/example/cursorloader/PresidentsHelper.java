@@ -21,6 +21,7 @@ class PresidentsHelper extends SQLiteOpenHelper {
     static final String P_NAME = "name";
     static final String COL_LANG_ID = "_id";
     static final String COL_LANG_NAME = "lang_name";
+    static final String COL_LANG_YEARS = "lang_years";
 
 
 
@@ -34,14 +35,14 @@ class PresidentsHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + COL_LANG_ID
                 + " INTEGER PRIMARY KEY NOT NULL, " + " " + COL_LANG_NAME
-                + " VARCHAR(50) NOT NULL);");
+                + " VARCHAR(50) NOT NULL,"+" " +COL_LANG_YEARS + " VARCHAR(50) NOT NULL);");
         addPresidents(db);
 
 
     }
-    private static void insertPresident(SQLiteDatabase db, String name) {
+    private static void insertPresident(SQLiteDatabase db, String name, String years) {
         db.execSQL("INSERT INTO " + TABLE_NAME + " (" + COL_LANG_NAME
-                + ") VALUES ('" + name + "');");
+                + ","+ COL_LANG_YEARS +") VALUES ('" + name + "','"+ years +"');");
     }
 
     @Override
@@ -52,7 +53,7 @@ class PresidentsHelper extends SQLiteOpenHelper {
     }
     public static void addPresidents(SQLiteDatabase db){
         for(President president : PresidentsGlobal.getInstance().getPresidents()){
-            insertPresident(db,president.getName());
+            insertPresident(db,president.getName(),president.getStartYear() + "-" + president.getEndYear());
         }
 
 
