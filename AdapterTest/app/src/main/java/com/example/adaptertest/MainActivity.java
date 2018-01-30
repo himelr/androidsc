@@ -2,41 +2,55 @@ package com.example.adaptertest;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private Context context = this;
+    PresidentsHelper dbHelper = null;
+    SQLiteDatabase db = null;
+    SimpleCursorAdapter myAdapter;
+    static final String[] PROJECTION = new String[] { "_id", "name"};
+    static final String SELECTION = "";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String[] fromColumns = {"name"};
+        int[] toViews = {android.R.id.text1};
+        myAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2,
+                null, fromColumns, toViews, 0);
+
         ListView lv = findViewById(R.id.presidentList);
-        addPresidents();
-        lv.setAdapter(new CustomAdapter(PresidentsGlobal.getInstance().getPresidents(),this,
-                R.layout.item_row
-               )
-        );
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("test2", "onItemClick(" + i + ")");
-                Intent nextActivity = new Intent(context, PresidentDetails.class);
-                nextActivity.putExtra("presidentName", PresidentsGlobal.getInstance().getPresidents().get(i).getName() + "");
-                nextActivity.putExtra("startYear", PresidentsGlobal.getInstance().getPresidents().get(i).getStartYear() + "");
-                nextActivity.putExtra("endYear", PresidentsGlobal.getInstance().getPresidents().get(i).getEndYear() +"");
-                nextActivity.putExtra("img", PresidentsGlobal.getInstance().getPresidents().get(i).getImg() +"");
-                startActivity(nextActivity);
-            }
-        });
+        lv.setAdapter(myAdapter);
+        getLoaderManager().initLoader(0, null, this);
+
+//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Log.d("test2", "onItemClick(" + i + ")");
+//                Intent nextActivity = new Intent(context, PresidentDetails.class);
+//                nextActivity.putExtra("presidentName", PresidentsGlobal.getInstance().getPresidents().get(i).getName() + "");
+//                nextActivity.putExtra("startYear", PresidentsGlobal.getInstance().getPresidents().get(i).getStartYear() + "");
+//                nextActivity.putExtra("endYear", PresidentsGlobal.getInstance().getPresidents().get(i).getEndYear() +"");
+//                nextActivity.putExtra("img", PresidentsGlobal.getInstance().getPresidents().get(i).getImg() +"");
+//                startActivity(nextActivity);
+//            }
+//        });
 
 
     }
@@ -66,16 +80,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
+        return new CursorLoader(this, Uri.parse("content://com.example.presidents/presidents"),
+                PROJECTION, SELECTION, null, null);
+
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        myAdapter.swapCursor(data);
+
 
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        myAdapter.swapCursor(null);
     }
 }
