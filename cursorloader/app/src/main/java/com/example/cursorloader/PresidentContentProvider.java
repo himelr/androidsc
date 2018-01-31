@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.util.Log;
 
 /**
  * Created by HimelR on 30-Jan-18.
@@ -19,13 +20,14 @@ public class PresidentContentProvider extends ContentProvider {
             + "/" + PresidentsHelper.TABLE_NAME);
     private PresidentsHelper dbHelper;
     private static final UriMatcher uriMatcher;
-    private static final int PRESIDENT_ID = 2;
+    private static final int PRESIDENT_ID = 3;
     public static final String _ID = "_id";
+
 
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(AUTHORITY, "PRESIDENTS/#", PRESIDENT_ID);
+        uriMatcher.addURI(AUTHORITY, PresidentsHelper.TABLE_NAME + "/#", PRESIDENT_ID);
     }
 
 
@@ -43,8 +45,21 @@ public class PresidentContentProvider extends ContentProvider {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(PresidentsHelper.TABLE_NAME);
         String orderBy = PresidentsHelper.COL_LANG_NAME + " asc";
-        if (uriMatcher.match(uri) == PRESIDENT_ID)
-           qb.appendWhere(_ID + " = " + uri.getPathSegments().get(1));
+        int uriType = uriMatcher.match(uri);
+
+        switch (uriType) {
+            case PRESIDENT_ID:
+                qb.appendWhere(PresidentsHelper.COL_LANG_ID + "="
+                        + uri.getLastPathSegment());
+                Log.d("test2", "Query");
+                break;
+            default:
+                break;
+
+        }
+
+//        if (uriMatcher.match(uri) == PRESIDENT_ID)
+//           qb.appendWhere(_ID + " = " + uri.getPathSegments().get(1));
 
         Cursor cursor = qb.query(dbHelper.getReadableDatabase(),
                 new String[] { PresidentsHelper.COL_LANG_ID,

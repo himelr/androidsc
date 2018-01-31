@@ -57,7 +57,7 @@ public class MainActivity extends ListActivity implements
         }
         return new CursorLoader(MainActivity.this,
                 PresidentContentProvider.CONTENT_URI,
-                new String[] { PresidentsHelper.COL_LANG_ID, PresidentsHelper.COL_LANG_NAME }, null, null,
+                new String[] { PresidentsHelper.COL_LANG_ID, PresidentsHelper.COL_LANG_NAME, PresidentsHelper.COL_LANG_YEARS }, null, null,
                 null);
     }
 
