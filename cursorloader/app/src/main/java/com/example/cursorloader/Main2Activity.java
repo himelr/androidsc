@@ -1,5 +1,6 @@
 package com.example.cursorloader;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import com.example.cursorloader.extra.ListAll;
 
 public class Main2Activity extends AppCompatActivity {
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +22,16 @@ public class Main2Activity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
-
+                Intent intent = new Intent(context, RoomActivity.class);
+                startActivity(intent);
             }
         });
 
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
 
             }
         });

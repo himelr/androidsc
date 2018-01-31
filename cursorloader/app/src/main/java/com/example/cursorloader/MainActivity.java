@@ -43,6 +43,7 @@ public class MainActivity extends ListActivity implements
                 Intent nextActivity = new Intent(context, PresidentDetails.class);
                 nextActivity.putExtra("id", l + "");
                 startActivity(nextActivity);
+
             }
         });
 

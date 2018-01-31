@@ -1,10 +1,14 @@
 package com.example.cursorloader;
+import android.arch.persistence.room.*;
 
 /**
  * Created by HimelR on 23-Jan-18.
  */
-
+@Entity
 class President {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String name;
     private int startYear;
     private int endYear;
@@ -12,9 +16,9 @@ class President {
 
     President(String name, int startYear, int endYear, String img){
         this.name = name;
-        this.startYear = startYear;
-        this.endYear = endYear;
-        this.img = img;
+        this.setStartYear(startYear);
+        this.setEndYear(endYear);
+        this.setImg(img);
 
     }
     public String getName() {
@@ -36,10 +40,30 @@ class President {
 
     @Override
     public String toString() {
-        return name + " " + startYear + "-" + endYear;
+        return name;
     }
 
     public String getImg() {
         return img;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStartYear(int startYear) {
+        this.startYear = startYear;
+    }
+
+    public void setEndYear(int endYear) {
+        this.endYear = endYear;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
