@@ -44,7 +44,7 @@ public class PresidentContentProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(PresidentsHelper.TABLE_NAME);
-        String orderBy = PresidentsHelper.COL_LANG_NAME + " asc";
+        //String orderBy = PresidentsHelper.COL_LANG_NAME + " asc";
         int uriType = uriMatcher.match(uri);
 
         switch (uriType) {
@@ -64,7 +64,7 @@ public class PresidentContentProvider extends ContentProvider {
         Cursor cursor = qb.query(dbHelper.getReadableDatabase(),
                 new String[] { PresidentsHelper.COL_LANG_ID,
                         PresidentsHelper.COL_LANG_NAME, PresidentsHelper.COL_LANG_YEARS }, null,
-                null, null, null, orderBy);
+                null, null, null, null);
 
         return cursor;
     }
