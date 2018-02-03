@@ -1,4 +1,4 @@
-package com.example.cursorloader;
+package com.example.cursorloader.Cursor;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

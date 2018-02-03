@@ -30,9 +30,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:design:26.1.0'
-    // ViewModel and LiveData
+    // com.example.cursorloader.ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:1.1.0"
-    // alternatively, just ViewModel
+    // alternatively, just com.example.cursorloader.ViewModel
     implementation "android.arch.lifecycle:viewmodel:1.1.0"
     // alternatively, just LiveData
     implementation "android.arch.lifecycle:livedata:1.1.0"

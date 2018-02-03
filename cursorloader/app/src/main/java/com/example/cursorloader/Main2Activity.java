@@ -4,10 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
-import com.example.cursorloader.extra.ListAll;
+import com.example.cursorloader.Cursor.MainActivity;
+import com.example.cursorloader.Room.RoomActivity;
+import com.example.cursorloader.ViewModel.ViewModelActivity;
 
 public class Main2Activity extends AppCompatActivity {
     private Context context = this;

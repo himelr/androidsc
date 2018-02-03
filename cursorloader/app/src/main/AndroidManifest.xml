@@ -10,20 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Cursor.MainActivity"
             android:parentActivityName=".Main2Activity" />
         <activity
-            android:name=".PresidentDetails"
-            android:parentActivityName=".MainActivity">
+            android:name=".Cursor.PresidentDetails"
+            android:parentActivityName=".Cursor.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Cursor.MainActivity" />
         </activity>
 
         <provider
-            android:name=".PresidentContentProvider"
+            android:name=".Cursor.PresidentContentProvider"
             android:authorities="com.android.presidents"
             android:exported="false" />
 
@@ -35,11 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RoomActivity" />
-        <activity android:name=".PresidentDetailsRoom" />
-        <activity android:name=".ViewModelActivity" />
-        <activity android:name=".PresidentAdd" />
-        <activity android:name=".PresidentUpdate"></activity>
+        <activity android:name=".Room.RoomActivity" />
+        <activity android:name=".Room.PresidentDetailsRoom" />
+        <activity android:name=".ViewModel.ViewModelActivity" />
+        <activity android:name=".ViewModel.PresidentAdd" />
+        <activity android:name=".ViewModel.PresidentUpdate"></activity>
     </application>
 
 </manifest>

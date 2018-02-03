@@ -1,22 +1,20 @@
-package com.example.cursorloader;
+package com.example.cursorloader.Cursor;
 
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.ListActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
-import android.database.Cursor;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
+
+import com.example.cursorloader.R;
 
 public class MainActivity extends ListActivity implements
         LoaderCallbacks<Cursor> {

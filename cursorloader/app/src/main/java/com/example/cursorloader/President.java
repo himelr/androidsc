@@ -5,7 +5,7 @@ import android.arch.persistence.room.*;
  * Created by HimelR on 23-Jan-18.
  */
 @Entity
-class President {
+public class President {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -14,7 +14,7 @@ class President {
     private int endYear;
     private String img;
 
-    President(String name, int startYear, int endYear, String img){
+    public President(String name, int startYear, int endYear, String img){
         this.name = name;
         this.setStartYear(startYear);
         this.setEndYear(endYear);

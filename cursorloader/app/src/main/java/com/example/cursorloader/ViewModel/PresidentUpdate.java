@@ -1,4 +1,4 @@
-package com.example.cursorloader;
+package com.example.cursorloader.ViewModel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.cursorloader.AppDatabase;
+import com.example.cursorloader.President;
+import com.example.cursorloader.R;
 
 public class PresidentUpdate extends AppCompatActivity {
     private President president;

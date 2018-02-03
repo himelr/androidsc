@@ -1,4 +1,4 @@
-package com.example.cursorloader;
+package com.example.cursorloader.Room;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.cursorloader.AppDatabase;
+import com.example.cursorloader.President;
+import com.example.cursorloader.R;
 import com.example.cursorloader.extra.ListAll;
 
 import java.util.List;

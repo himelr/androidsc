@@ -1,4 +1,4 @@
-package com.example.cursorloader;
+package com.example.cursorloader.ViewModel;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -12,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.example.cursorloader.President;
+import com.example.cursorloader.R;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ import java.util.Set;
  * Created by HimelR on 23-Jan-18.
  */
 
-class CustomAdapter implements ListAdapter {
+public class CustomAdapter implements ListAdapter {
     private List<President> presidents;
     private Context context;
     private Set<DataSetObserver> observerChangeSet;

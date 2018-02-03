@@ -1,4 +1,4 @@
-package com.example.cursorloader;
+package com.example.cursorloader.Cursor;
 
 /**
  * Created by HimelR on 30-Jan-18.
@@ -10,11 +10,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.cursorloader.President;
+import com.example.cursorloader.PresidentsGlobal;
+
 /**
  * Created by HimelR on 30-Jan-18.
  */
 
-class PresidentsHelper extends SQLiteOpenHelper {
+public class PresidentsHelper extends SQLiteOpenHelper {
     static final String DATABASE_NAME = "presidentsDB";
     static final int DATABASE_VERSION = 2;
     static final String TABLE_NAME = "presidents";
@@ -25,7 +28,7 @@ class PresidentsHelper extends SQLiteOpenHelper {
 
 
 
-    PresidentsHelper(Context context){
+   public PresidentsHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
         getWritableDatabase();
 

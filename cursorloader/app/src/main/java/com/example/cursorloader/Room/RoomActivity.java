@@ -1,6 +1,5 @@
-package com.example.cursorloader;
+package com.example.cursorloader.Room;
 
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
@@ -11,6 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.cursorloader.AppDatabase;
+import com.example.cursorloader.President;
+import com.example.cursorloader.PresidentsGlobal;
+import com.example.cursorloader.R;
+import com.example.cursorloader.Room.PresidentDetailsRoom;
+import com.example.cursorloader.ViewModel.CustomAdapter;
 
 import java.util.List;
 
@@ -34,16 +40,16 @@ public class RoomActivity extends AppCompatActivity {
 
         ListView lv = findViewById(R.id.presidentList);
 
-        lv.setAdapter(new ArrayAdapter<President>(
-                this,
-                R.layout.president_item,
-                createAdapter.getPresidentList())
+        lv.setAdapter(new CustomAdapter(
+                createAdapter.getPresidentList(),
+                this.getApplicationContext(),
+                R.layout.president_item)
         );
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("test2", "onItemClick(" + i + ")");
+                Log.d("test2", "onItemClick(" + l + ")");
                 Intent nextActivity = new Intent(context, PresidentDetailsRoom.class);
                 nextActivity.putExtra("id", l + "");
                 startActivity(nextActivity);

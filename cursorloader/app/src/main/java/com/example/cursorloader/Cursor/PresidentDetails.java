@@ -1,19 +1,13 @@
-package com.example.cursorloader;
+package com.example.cursorloader.Cursor;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.net.URL;
+import com.example.cursorloader.R;
 
 public class PresidentDetails extends AppCompatActivity {
 
