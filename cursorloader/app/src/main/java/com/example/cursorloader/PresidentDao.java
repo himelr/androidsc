@@ -28,6 +28,9 @@ public interface PresidentDao {
     @Delete
     void delete(President president);
 
+    @Update
+    void update(President president);
+
     @Query("DELETE FROM president WHERE id = :id")
     void deleteID(int id);
 }

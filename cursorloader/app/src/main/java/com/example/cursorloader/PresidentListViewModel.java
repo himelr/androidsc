@@ -25,23 +25,13 @@ public class PresidentListViewModel extends ViewModel {
 
         return presidents;
     }
-    public LiveData<President> getPresident(int pos){
-        president = new MutableLiveData<>();
-        president.setValue(prslist.get(pos));
-        return president;
-
-    }
 
     private void loadUsers() {
         Thread task = new Thread(new TaskB(getContext()));
         task.start();
 
     }
-    private void loadUser() {
-        Thread task = new Thread(new TaskC(getContext()));
-        task.start();
 
-    }
 
     public Context getContext() {
         return context;
@@ -67,19 +57,6 @@ public class PresidentListViewModel extends ViewModel {
 
         }
     }
-    private class TaskC implements Runnable{
-        private Context context;
 
-        private TaskC(Context context){
-            this.context = context;
-        }
-
-        @Override
-        public void run() {
-            AppDatabase db =  AppDatabase.getAppDatabase(context);
-
-
-        }
-    }
 
 }

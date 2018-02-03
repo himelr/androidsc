@@ -99,6 +99,13 @@ public class ViewModelActivity extends AppCompatActivity implements View.OnCreat
                 startActivity(intent);
                 return true;
 
+            case R.id.update:
+                Intent intent2 = new Intent(this.getApplicationContext(),PresidentUpdate.class);
+                intent2.putExtra("id", (info.id + 1) + "");
+                startActivity(intent2);
+
+                return true;
+
             case R.id.delete:
                 System.out.println("DELETE");
                 Thread thread = new Thread(new TaskB3(this.getApplicationContext(), (int)info.id + 1));
@@ -108,6 +115,7 @@ public class ViewModelActivity extends AppCompatActivity implements View.OnCreat
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
 
                 //getWindow().getDecorView().findViewById(android.R.id.content).invalidate();
                 //model.getPresidents();

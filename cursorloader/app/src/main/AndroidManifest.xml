@@ -38,7 +38,8 @@
         <activity android:name=".RoomActivity" />
         <activity android:name=".PresidentDetailsRoom" />
         <activity android:name=".ViewModelActivity" />
-        <activity android:name=".PresidentAdd"></activity>
+        <activity android:name=".PresidentAdd" />
+        <activity android:name=".PresidentUpdate"></activity>
     </application>
 
 </manifest>
