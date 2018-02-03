@@ -40,7 +40,7 @@ class President {
 
     @Override
     public String toString() {
-        return name;
+        return name + " id:" + this.id;
     }
 
     public String getImg() {
