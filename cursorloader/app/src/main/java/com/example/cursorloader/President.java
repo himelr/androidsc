@@ -13,12 +13,21 @@ public class President {
     private int startYear;
     private int endYear;
     private String img;
+    @Ignore
+    private String time;
 
     public President(String name, int startYear, int endYear, String img){
         this.name = name;
         this.setStartYear(startYear);
         this.setEndYear(endYear);
         this.setImg(img);
+
+
+    }
+    @Ignore
+    public President(String name, String time){
+        this.name = name;
+        this.time = time;
 
     }
     public String getName() {
@@ -40,7 +49,7 @@ public class President {
 
     @Override
     public String toString() {
-        return name + " id:" + this.id;
+        return name;
     }
 
     public String getImg() {
@@ -65,5 +74,9 @@ public class President {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

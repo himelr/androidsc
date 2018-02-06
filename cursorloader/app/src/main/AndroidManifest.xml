@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cursorloader">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,7 +41,9 @@
         <activity android:name=".Room.PresidentDetailsRoom" />
         <activity android:name=".ViewModel.ViewModelActivity" />
         <activity android:name=".ViewModel.PresidentAdd" />
-        <activity android:name=".ViewModel.PresidentUpdate"></activity>
+        <activity android:name=".ViewModel.PresidentUpdate" />
+        <activity android:name=".web.JsonActivity" />
+        <activity android:name=".web.JSONDetails"></activity>
     </application>
 
 </manifest>
