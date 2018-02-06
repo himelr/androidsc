@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.intents.MESSAGE";
+    String CUSTOM_ACTION = "com.app.custom.ACTION";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +32,13 @@ public class MainActivity extends AppCompatActivity {
     }
     public void sendMessage3(View view){
         Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.setAction(CUSTOM_ACTION);
         EditText editText = findViewById(R.id.editText2);
         String message = editText.getText().toString();
         sendIntent.putExtra(Intent.EXTRA_TEXT, message);
         sendIntent.setType("text/plain");
 
-// Verify that the intent will resolve to an activity
+
         if (sendIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(sendIntent);
         }
