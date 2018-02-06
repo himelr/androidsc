@@ -83,7 +83,7 @@ public class RoomActivity extends AppCompatActivity {
 
                 }
             }
-            setPresidentList(db.presidentDao().getAll());
+            setPresidentList(db.presidentDao().getAll().getValue());
         }
 
         public List<President> getPresidentList() {

@@ -14,6 +14,7 @@ import com.example.cursorloader.R;
 
 public class PresidentUpdate extends AppCompatActivity {
     private President president;
+    private PresidentUpdateViewModel presidentUpdateViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.example.cursorloader;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.*;
 
 import java.util.List;
@@ -11,13 +12,13 @@ import java.util.List;
 @Dao
 public interface PresidentDao {
     @Query("SELECT * FROM president")
-    List<President> getAll();
+    LiveData<List<President>> getAll();
 
     @Query("SELECT * FROM president WHERE id IN (:userIds)")
     List<President> loadAllByIds(int[] userIds);
 
     @Query("SELECT * FROM president WHERE name LIKE :name LIMIT 1")
-    President findByName(String name);
+    LiveData<President> findByName(String name);
 
     @Query("SELECT * FROM president WHERE id = :id")
     President findByid(int id);

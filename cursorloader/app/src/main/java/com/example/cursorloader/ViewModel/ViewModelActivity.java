@@ -2,8 +2,10 @@ package com.example.cursorloader.ViewModel;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +22,9 @@ import com.example.cursorloader.Room.PresidentDetailsRoom;
 import com.example.cursorloader.R;
 
 public class ViewModelActivity extends AppCompatActivity implements View.OnCreateContextMenuListener{
-    private PresidentListViewModel model;
-    private Context context;
 
+    private Context context;
+    private PresidentListViewModel model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +35,10 @@ public class ViewModelActivity extends AppCompatActivity implements View.OnCreat
         context = getApplicationContext();
 
         model = ViewModelProviders.of(this).get(PresidentListViewModel.class);
-        model.setContext(this);
+        model.setContext(context);
         model.getPresidents().observe(this, presidents -> {
+            Log.d("test2", "Data set changed");
+
             lv.setAdapter(new CustomAdapter(
                     presidents,
                     context,
@@ -104,19 +108,33 @@ public class ViewModelActivity extends AppCompatActivity implements View.OnCreat
 
             case R.id.delete:
                 System.out.println("DELETE");
-                Thread thread = new Thread(new TaskB3(this.getApplicationContext(), (int)info.id + 1));
-                thread.start();
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 
-
-                //getWindow().getDecorView().findViewById(android.R.id.content).invalidate();
-                //model.getPresidents();
-                super.recreate();
+                AlertDialog alertDialog = new AlertDialog.Builder(ViewModelActivity.this).create();
+                alertDialog.setTitle("President");
+                alertDialog.setMessage("Delete");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "NO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Thread thread = new Thread(new TaskB3((int)info.id + 1));
+                                thread.start();
+                                try {
+                                    thread.join();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                //dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+                //super.recreate();
                 return true;
+
             default:
                 return super.onContextItemSelected(item);
         }
@@ -125,11 +143,10 @@ public class ViewModelActivity extends AppCompatActivity implements View.OnCreat
 
 
     private class TaskB3 implements Runnable{
-        private Context context;
+
         private int id;
 
-        private TaskB3(Context context, int id){
-            this.context = context;
+        private TaskB3(int id){
             this.id = id;
         }
 

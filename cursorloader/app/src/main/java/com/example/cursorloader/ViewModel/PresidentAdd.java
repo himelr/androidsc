@@ -1,5 +1,6 @@
 package com.example.cursorloader.ViewModel;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +16,14 @@ import com.example.cursorloader.R;
 import java.util.List;
 
 public class PresidentAdd extends AppCompatActivity {
+    private PresidentAddViewModel presidentAddViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_president_add);
         Button b4 = findViewById(R.id.button4);
+        presidentAddViewModel = ViewModelProviders.of(this).get(PresidentAddViewModel.class);
 
 
         b4.setOnClickListener(v -> {
@@ -32,9 +35,7 @@ public class PresidentAdd extends AppCompatActivity {
             int end = Integer.parseInt(textView3.getText().toString());
             try {
                 President p = new President(name,start,end,"empty");
-                Thread thread = new Thread(new TaskB2(this.getApplicationContext(),p));
-                thread.start();
-                thread.join();
+                presidentAddViewModel.addPresident(p);
                 super.finish();
 
 
