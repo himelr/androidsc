@@ -46,6 +46,7 @@ public class PresidentDetails extends AppCompatActivity {
 
 
         }
+
         textView.setText(name + "");
         textView2.setText(year+ "");
 
