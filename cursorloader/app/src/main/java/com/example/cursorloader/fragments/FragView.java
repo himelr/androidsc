@@ -19,8 +19,6 @@ public class FragView extends Activity implements ItemFragment.OnListFragmentInt
     public void onListFragmentInteraction(President item) {
         PrsFrgDetails fragment = (PrsFrgDetails) getFragmentManager().findFragmentById(R.id.detailFragment);
         fragment.setText(item.getName() + "\n" + item.getStartYear() + "-" + item.getEndYear());
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.addToBackStack("FragmentB");
-        transaction.commit();
+
     }
 }

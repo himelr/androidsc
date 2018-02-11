@@ -105,54 +105,12 @@ public class JsonActivity extends AppCompatActivity {
         registerReceiver(receiver, new IntentFilter(
                 JsonService.NOTIFICATION));
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         unregisterReceiver(receiver);
     }
 
-
-
-
-    private class JSONTask extends AsyncTask<String, String, JSONObject> {
-
-        @Override
-        protected JSONObject doInBackground(String... args) {
-            JSONParser jParser = new JSONParser();
-            JSONObject json = jParser.getJSONFromUrl2(args[0]);
-            return json;
-        }
-        @Override
-        protected void onPostExecute(JSONObject json) {
-
-            try {
-                List<President> presidentsList = new ArrayList();
-
-                JSONArray presidents = json.getJSONArray("presidents");
-                for(int i = 0; i < 8; i++){
-                    JSONObject c = presidents.getJSONObject(i);
-                    String name = c.getString("name");
-                    String time = c.getString("time");
-                    presidentsList.add(new President(name,time));
-
-                }
-                presidentList = presidentsList;
-                lv.setAdapter(new ArrayAdapter<President>(getApplicationContext(),R.layout.president_item,presidentList)
-
-                );
-                Context context = getApplicationContext();
-                CharSequence text = "Download Complete!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
 
 }
