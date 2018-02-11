@@ -2,6 +2,7 @@ package com.example.cursorloader;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import com.example.cursorloader.Cursor.MainActivity;
 import com.example.cursorloader.Room.RoomActivity;
 import com.example.cursorloader.ViewModel.ViewModelActivity;
+import com.example.cursorloader.fragments.FragView;
 import com.example.cursorloader.web.JsonActivity;
 
 public class Main2Activity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class Main2Activity extends AppCompatActivity {
         Button b2 = findViewById(R.id.button2);
         Button b3 = findViewById(R.id.button3);
         Button b4 = findViewById(R.id.button4);
+        Button b5 = findViewById(R.id.button6);
 
         b1.setOnClickListener(v -> {
             Intent intent = new Intent(context, RoomActivity.class);
@@ -42,7 +45,11 @@ public class Main2Activity extends AppCompatActivity {
             Intent intent = new Intent(context, JsonActivity.class);
             startActivity(intent);
             });
-
+        b5.setOnClickListener(v -> {
+            Intent intent = new Intent(context, FragView.class);
+            startActivity(intent);
+        });
     }
+
 
 }

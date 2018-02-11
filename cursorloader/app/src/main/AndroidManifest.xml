@@ -37,16 +37,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FragmentActivity" />
         <activity android:name=".Room.RoomActivity" />
         <activity android:name=".Room.PresidentDetailsRoom" />
         <activity android:name=".ViewModel.ViewModelActivity" />
         <activity android:name=".ViewModel.PresidentAdd" />
         <activity android:name=".ViewModel.PresidentUpdate" />
         <activity android:name=".web.JsonActivity" />
-        <activity android:name=".web.JSONDetails"></activity>
+        <activity android:name=".web.JSONDetails" />
 
-        <service android:name="com.example.cursorloader.web.JsonService" >
-        </service>
+        <service android:name=".web.JsonService" />
+
+        <activity android:name=".fragments.FragView"></activity>
     </application>
 
 </manifest>
